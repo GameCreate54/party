@@ -21,8 +21,12 @@ async function createFirebase(cfg) {
   const app = appMod.initializeApp(cfg, 'party-room');
   const d = db.getDatabase(app);
   const r = (p) => db.ref(d, p);
+  // サーバーとこの端末の時計のずれ。早押しなど、全員で同じ時刻を使いたいときのため
+  let offset = 0;
+  db.onValue(r('.info/serverTimeOffset'), (s) => { offset = s.val() || 0; });
   return {
     kind: 'firebase',
+    now: () => Date.now() + offset,
     get: async (p) => (await db.get(r(p))).val(),
     set: (p, v) => db.set(r(p), plain(v)),
     update: (p, v) => db.update(r(p), plain(v)),
@@ -132,6 +136,7 @@ function createLocal() {
   let seq = 0;
   return {
     kind: 'local',
+    now: () => Date.now(),
     get: async (p) => { tree = latest(); return JSON.parse(JSON.stringify(getAt(parts(p)) ?? null)); },
     set: (p, v) => write(() => setAt(parts(p), v)),
     update: (p, obj) => write(() => {

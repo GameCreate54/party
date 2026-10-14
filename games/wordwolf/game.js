@@ -9,7 +9,7 @@
 //   memory  … 部屋に残しておく情報（最近出たお題など）
 // - render は全員の端末で動き、ctx.send(type, data) で操作をホストに送る
 (() => {
-const { h, inputBox, button, stepper, segmented, shuffle, pick, drafts } = window.Party.ui;
+const { h, inputBox, button, stepper, segmented, shuffle, pick, drafts, toast, ask } = window.Party.ui;
 const GENRES = window.Party.wordwolfTopics;
 
 const MIN_PLAYERS = 3;
@@ -286,7 +286,7 @@ function gmInput(ctx, g) {
   const submit = () => {
     const majority = (drafts['gm-maj'] || '').trim();
     const minority = (drafts['gm-min'] || '').trim();
-    if (!majority || !minority || majority === minority) return alert('違う2つのお題を入れてください');
+    if (!majority || !minority || majority === minority) return toast('違う2つのお題を入れてください');
     ctx.send('gmTopics', { majority, minority });
   };
   return h('div', { class: 'stack' },
@@ -326,7 +326,7 @@ function topic(ctx, g) {
     return h('div', { class: 'stack' },
       isGM(ctx, g) && gmTopics(ctx),
       progress(ctx, g, ready, 'お題を確認中'),
-      ctx.isHost && button('確認を待たずに発言へ進む', () => confirm('発言フェーズに進みますか？') && ctx.send('forceTalk'), 'ghost'));
+      ctx.isHost && button('確認を待たずに発言へ進む', () => ask('発言フェーズに進みますか？', () => ctx.send('forceTalk')), 'ghost'));
   }
   return h('div', { class: 'stack' },
     h('p', { class: 'center lead' }, '自分のお題を確認しよう。少数派かどうかは、まだ誰にも分かりません。'),
@@ -334,7 +334,7 @@ function topic(ctx, g) {
     ready[ctx.me]
       ? progress(ctx, g, ready, 'みんなの確認待ち')
       : button('確認した', () => ctx.send('ready'), 'primary'),
-    ctx.isHost && ready[ctx.me] && button('確認を待たずに発言へ進む', () => confirm('発言フェーズに進みますか？') && ctx.send('forceTalk'), 'ghost'));
+    ctx.isHost && ready[ctx.me] && button('確認を待たずに発言へ進む', () => ask('発言フェーズに進みますか？', () => ctx.send('forceTalk')), 'ghost'));
 }
 
 function talk(ctx, g) {
@@ -357,7 +357,7 @@ function talk(ctx, g) {
     ctx.isHost && h('div', { class: 'host-tools' },
       h('small', { class: 'muted' }, 'ホスト操作'),
       !mine && button(`${nameOf(ctx, current)}の番を飛ばす`, () => ctx.send('endTurn', { turnKey }), 'ghost small'),
-      button('投票へ進む', () => confirm('発言を終えて投票に進みますか？') && ctx.send('goVote'), 'small')));
+      button('投票へ進む', () => ask('発言を終えて投票に進みますか？', () => ctx.send('goVote')), 'small')));
 }
 
 function vote(ctx, g) {
@@ -380,7 +380,7 @@ function vote(ctx, g) {
     progress(ctx, g, votes, '投票済み'),
     ctx.isHost && h('div', { class: 'host-tools' },
       h('small', { class: 'muted' }, 'ホスト操作'),
-      button('今の票で集計する', () => confirm('まだ投票していない人がいても集計しますか？') && ctx.send('tally'), 'small ghost')));
+      button('今の票で集計する', () => ask('まだ投票していない人がいても集計しますか？', () => ctx.send('tally')), 'small ghost')));
 }
 
 function guess(ctx, g) {

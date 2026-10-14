@@ -63,3 +63,12 @@ button.aq-try { cursor: pointer; outline: 1.5px dashed var(--muted); outline-off
 
 @keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
 .pop { animation: pop .45s ease-out; }
+
+/* 出題者の表示 */
+.aq-askerbar { display: flex; flex-direction: column; gap: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+.aq-asker-now { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.aq-asker-now strong { font-size: 16px; }
+.aq-askerbar .chips { gap: 5px; }
+.aq-askerbar .chip { padding: 4px 11px; font-size: 13px; }
+.aq-pl.asker { border-style: dashed; opacity: .75; }
+.aq-holeans { display: flex; flex-direction: column; gap: 4px; }

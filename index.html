@@ -8,30 +8,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
   <!-- ゲームごとの見た目 -->
-  <link rel="stylesheet" href="games/anaume/style.css">
-  <link rel="stylesheet" href="games/usotsuki/style.css">
-  <link rel="stylesheet" href="games/waraimake/style.css">
+  <link rel="stylesheet" href="games/anaume/style.css?v=2">
+  <link rel="stylesheet" href="games/usotsuki/style.css?v=2">
+  <link rel="stylesheet" href="games/waraimake/style.css?v=2">
 </head>
 <body>
   <div id="app"><div class="screen center"><p class="muted">読み込み中…</p></div></div>
   <div id="toast" role="status" aria-live="polite"></div>
-  <!-- 読み込む順番が大事です -->
-  <script src="config.js"></script>
-  <script src="core/ui.js"></script>
-  <script src="core/sync.js"></script>
-  <script src="core/registry.js"></script>
+  <!-- 読み込む順番が大事です。
+       ファイルを更新したら、下の ?v=2 の数字を全部 ?v=3 のように1つ増やすと、
+       スマホが古いファイルを使い続けるのを防げます -->
+  <script src="config.js?v=2"></script>
+  <script src="core/ui.js?v=2"></script>
+  <script src="core/sync.js?v=2"></script>
+  <script src="core/registry.js?v=2"></script>
 
   <!-- ===== ゲーム（追加するときはここに足す） ===== -->
-  <script src="games/wordwolf/topics.js"></script>
-  <script src="games/wordwolf/game.js"></script>
-  <script src="games/anaume/game.js"></script>
-  <script src="games/usotsuki/topics.js"></script>
-  <script src="games/usotsuki/game.js"></script>
-  <script src="games/waraimake/game.js"></script>
+  <script src="games/wordwolf/topics.js?v=2"></script>
+  <script src="games/wordwolf/game.js?v=2"></script>
+  <script src="games/anaume/game.js?v=2"></script>
+  <script src="games/usotsuki/topics.js?v=2"></script>
+  <script src="games/usotsuki/game.js?v=2"></script>
+  <script src="games/waraimake/game.js?v=2"></script>
 
-  <script src="core/room.js"></script>
-  <script src="core/app.js"></script>
+  <script src="core/room.js?v=2"></script>
+  <script src="core/app.js?v=2"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 // - 回答の順番はサーバーの時刻で決める
 // - ひらがな・カタカナ、全角・半角、伸ばし棒の違いは同じ扱い。別解は「/」区切り
 (() => {
-const { h, inputBox, button, drafts, toast } = window.Party.ui;
+const { h, inputBox, button, drafts, toast, ask } = window.Party.ui;
 
 const BLANK = '〇';
 const MAX_PLAYERS = 8;
@@ -226,7 +226,7 @@ function board(ctx, g) {
         if (ctx.isHost && playing && t.ok !== true) {
           return h('button', {
             type: 'button', class: 'aq-try ' + cls,
-            onclick: () => confirm(`「${t.text}」（${p.name}）を正解にしますか？`) && ctx.send('accept', { index: t.index }),
+            onclick: () => ask(`「${t.text}」（${p.name}）を正解にしますか？`, () => ctx.send('accept', { index: t.index })),
           }, label);
         }
         return h('span', { class: 'aq-try ' + cls }, label);
@@ -243,7 +243,7 @@ function hostView(ctx, g) {
       h('div', { class: 'aq-hostinfo' }, '正解：', h('b', null, (ctx.private && ctx.private.answer) || ''), '（ホストにだけ見えています）'),
       h('div', { class: 'aq-timer timer' }, elapsed()),
       h('p', { class: 'muted small center', style: 'margin:0' }, '別解が来たら、下の回答をタップすると手動で正解にできます'),
-      button('正解者なしで発表する', () => confirm('正解者なしで発表しますか？') && ctx.send('giveup'), 'ghost'))
+      button('正解者なしで発表する', () => ask('正解者なしで発表しますか？', () => ctx.send('giveup')), 'ghost'))
     : g.phase === 'reveal'
       ? h('div', { class: 'card' }, resultBlock(ctx, g))
       : h('div', { class: 'card center' }, h('p', { class: 'muted', style: 'margin:0' }, `${n}人が参加中。最初の問題を出そう！`));

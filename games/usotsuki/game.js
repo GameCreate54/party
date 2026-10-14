@@ -7,7 +7,7 @@
 //
 // ウソの文章は各自のスマホ（localStorage）にだけ保存し、答え合わせまでだれにも送らない。
 (() => {
-const { h, button, drafts, toast, pick } = window.Party.ui;
+const { h, button, drafts, toast, pick, ask } = window.Party.ui;
 const { TOPICS, GENERIC } = window.Party.usotsukiTopics;
 
 const MAX_PLAYERS = 8;
@@ -403,7 +403,7 @@ function reveal(ctx, g) {
       h('div', { class: 'card' },
         h('h2', null, `全員の答え合わせを待っています ${n}/${g.players.length}`),
         statusList(ctx, g, done, '完了', '確認中')),
-      ctx.isHost && button('待たずに結果発表へ（ホスト）', () => confirm('まだ終わっていない人がいても結果発表に進みますか？') && ctx.send('forceFinal'), 'ghost'));
+      ctx.isHost && button('待たずに結果発表へ（ホスト）', () => ask('まだ終わっていない人がいても結果発表に進みますか？', () => ctx.send('forceFinal')), 'ghost'));
   }
   const lies = getLies(ctx);
   const ready = lies.every((l, k) => l.caught || view.said[k] !== undefined);

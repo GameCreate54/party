@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14182b">
+  <title>パーティールーム</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- ゲームごとの見た目 -->
+  <link rel="stylesheet" href="games/anaume/style.css">
+  <link rel="stylesheet" href="games/usotsuki/style.css">
+  <link rel="stylesheet" href="games/waraimake/style.css">
+</head>
+<body>
+  <div id="app"><div class="screen center"><p class="muted">読み込み中…</p></div></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <!-- 読み込む順番が大事です -->
+  <script src="config.js"></script>
+  <script src="core/ui.js"></script>
+  <script src="core/sync.js"></script>
+  <script src="core/registry.js"></script>
+
+  <!-- ===== ゲーム（追加するときはここに足す） ===== -->
+  <script src="games/wordwolf/topics.js"></script>
+  <script src="games/wordwolf/game.js"></script>
+  <script src="games/anaume/game.js"></script>
+  <script src="games/usotsuki/topics.js"></script>
+  <script src="games/usotsuki/game.js"></script>
+  <script src="games/waraimake/game.js"></script>
+
+  <script src="core/room.js"></script>
+  <script src="core/app.js"></script>
+</body>
+</html>

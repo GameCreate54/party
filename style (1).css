@@ -1,0 +1,63 @@
+/* ===== 笑ったら負け ===== */
+.wm-av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #1a1030; flex: none; font-size: 16px; }
+.wm-top { display: flex; justify-content: space-between; align-items: baseline; }
+.wm-top b { color: var(--text); font-size: 18px; }
+
+.wm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.wm-pc { background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 8px 4px 6px; text-align: center; position: relative; min-height: 84px; }
+.wm-pc .wm-av { margin: 0 auto 4px; width: 38px; height: 38px; }
+.wm-nm { font-size: 12px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wm-pc.me { border-color: #4cc9f0; }
+.wm-pc.out { opacity: .35; filter: grayscale(1); }
+.wm-rs { font-size: 20px; position: absolute; top: 2px; right: 4px; }
+.wm-pc.tgt { border-color: var(--wolf); animation: wm-pulse .7s infinite alternate; }
+@keyframes wm-pulse { to { box-shadow: 0 0 0 4px rgba(229, 103, 90, .35); } }
+.wm-ind { font-size: 10px; color: var(--wolf); font-weight: 800; }
+
+.wm-banner { background: linear-gradient(90deg, #5a1530, #3a1550); border: 2px solid var(--wolf); border-radius: 14px; padding: 9px 12px; font-weight: 700; font-size: 14px; display: flex; justify-content: space-between; gap: 8px; align-items: center; }
+.wm-cd { font-size: 20px; color: var(--accent); font-variant-numeric: tabular-nums; flex: none; font-weight: 800; }
+
+.wm-mh { display: flex; justify-content: space-between; align-items: baseline; }
+.wm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.wm-chip { font-weight: 800; font-size: 14px; padding: 8px 12px; border-radius: 99px; border: 2px solid var(--line); background: var(--bg2); cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.wm-dot { width: 12px; height: 12px; border-radius: 50%; }
+.wm-chip.sel { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.wm-chip:disabled { opacity: .3; text-decoration: line-through; cursor: default; }
+
+.wm-log { list-style: none; padding: 0; margin: 0; font-size: 13px; }
+.wm-log li { padding: 5px 2px; border-bottom: 1px dashed var(--line); }
+.wm-log li:last-child { border: 0; }
+.wm-spacer { height: 100px; }
+
+.wm-laughbar { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, var(--bg) 35%); z-index: 5; }
+.wm-in { max-width: 448px; margin: 0 auto; }
+.wm-laugh { width: 100%; font: inherit; font-weight: 800; font-size: 24px; border: 0; border-radius: 22px; padding: 18px; color: #fff; background: #ff4d6d; box-shadow: 0 6px 0 #a3263d; cursor: pointer; }
+.wm-laugh:active { transform: translateY(5px); box-shadow: 0 1px 0 #a3263d; }
+.wm-laugh.arm { background: #fff; color: #ff4d6d; animation: wm-shake .15s infinite; }
+@keyframes wm-shake { 0% { transform: translateX(-2px); } 50% { transform: translateX(2px); } }
+.wm-watch { text-align: center; background: var(--card); border-radius: 18px; padding: 16px; font-weight: 800; color: var(--muted); }
+
+.wm-ov { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; overflow-y: auto; }
+.wm-word-ov { background: repeating-linear-gradient(45deg, #2b0a18 0 18px, #3a0d20 18px 36px); }
+.wm-hd { font-weight: 800; color: var(--accent); font-size: 20px; letter-spacing: .1em; }
+.wm-wcard { width: 100%; max-width: 440px; margin-bottom: 18px; }
+.wm-from { color: var(--muted); margin: 6px 0 12px; }
+.wm-word { font-size: clamp(40px, 14vw, 72px); font-weight: 800; line-height: 1.1; background: #fff; color: #1a0010; padding: 14px 22px; border-radius: 20px; transform: rotate(-2deg); word-break: break-all; margin: 6px 0 14px; box-shadow: 0 8px 0 #ff4d6d; display: inline-block; }
+.wm-desc { font-size: 15px; margin-bottom: 10px; }
+.wm-num { font-size: 64px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1; }
+.wm-bar { width: 100%; max-width: 420px; height: 12px; background: #ffffff22; border-radius: 99px; overflow: hidden; margin: 10px auto 14px; }
+.wm-bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+.btn.wm-say { width: 100%; max-width: 420px; font-size: 26px; min-height: 72px; background: var(--citizen); border-color: var(--citizen); color: #062517; }
+.wm-out-ov { background: rgba(10, 5, 20, .92); pointer-events: none; }
+.wm-big { font-size: 56px; font-weight: 800; color: #ff4d6d; animation: wm-pop .4s; }
+@keyframes wm-pop { from { transform: scale(2.4); opacity: 0; } }
+
+.wm-crown { font-size: 56px; text-align: center; }
+.wm-win { font-size: 30px; font-weight: 800; text-align: center; color: var(--accent); margin-top: -10px; }
+.wm-winners { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.wm-w1 { background: var(--card); border: 2px solid var(--accent); border-radius: 16px; padding: 10px 14px; font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+.wm-plist { list-style: none; margin: 0; padding: 0; }
+.wm-plist li { display: flex; align-items: center; gap: 10px; padding: 8px 4px; border-bottom: 1px dashed var(--line); }
+.wm-plist li:last-child { border: 0; }
+.wm-no { width: 24px; font-weight: 800; color: var(--muted); }
+.wm-reason { margin-left: auto; font-size: 13px; color: var(--muted); }

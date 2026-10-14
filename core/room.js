@@ -133,6 +133,8 @@ class Room {
       private: this.isHost() ? this.state.private || null : null,
       memory: (this.state.memory || {})[mod.id] || null,
       send: (type, data = {}) => this.send(type, data),
+      // 全員共通の時計（サーバー時刻）。操作に付く ts と同じ基準
+      now: () => this.db.now(),
       // ホストを通さず、自分の欄に直接書く情報（入力中の文字など、頻繁に変わるもの）
       live: this.state.live || {},
       setLive: (v) => this.db.set(this.base + '/live/' + this.me, v ?? null),

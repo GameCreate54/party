@@ -1,0 +1,65 @@
+/* ===== 穴〇め早打ち ===== */
+.aq-q {
+  font-size: clamp(30px, 10vw, 46px);
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.35;
+  word-break: break-all;
+  padding: 10px 4px;
+}
+.aq-blank {
+  display: inline-block;
+  min-width: 1em;
+  padding: 0 .08em;
+  border-radius: .18em;
+  background: var(--accent);
+  color: var(--accent-ink);
+  text-align: center;
+}
+.aq-blank.empty { background: transparent; outline: 3px dashed var(--accent); outline-offset: -3px; color: transparent; }
+.timer { text-align: center; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.aq-hostinfo { text-align: center; color: var(--muted); font-size: 13px; }
+.aq-hostinfo b { color: var(--citizen); font-size: 16px; }
+
+.aq-result { text-align: center; }
+.aq-who { font-size: 26px; font-weight: 800; color: var(--citizen); }
+.aq-who.none { color: var(--muted); }
+
+.aq-sec { font-size: 12px; color: var(--muted); font-weight: 800; margin: 4px 2px -6px; }
+.aq-board { display: grid; gap: 8px; }
+.aq-pl { background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+.aq-pl.off { opacity: .45; }
+.aq-pl.win { border-color: var(--citizen); box-shadow: 0 0 0 3px rgba(95, 191, 149, .25); }
+.aq-pl.mine { border-color: #4a5294; }
+.aq-pl-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.aq-pl-name { font-weight: 800; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.aq-pl-score { font-weight: 800; color: var(--accent); white-space: nowrap; }
+.aq-live { font-size: 22px; font-weight: 800; margin-top: 4px; min-height: 30px; word-break: break-all; }
+.aq-live.idle { color: var(--muted); font-size: 13px; font-weight: 400; padding-top: 6px; }
+.aq-tries { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.aq-try { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 99px; background: var(--card2); border: 0; color: var(--text); }
+.aq-try.ok { background: var(--citizen); color: #062517; }
+.aq-try.ng { background: #4a2030; color: #ffb3bf; text-decoration: line-through; }
+.aq-try.late { background: #333; color: #aaa; }
+button.aq-try { cursor: pointer; outline: 1.5px dashed var(--muted); outline-offset: 1px; }
+
+.aq-row { display: flex; gap: 8px; }
+.aq-row .input { flex: 1; min-width: 0; }
+.aq-blank-btn { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-size: 22px; min-width: 60px; }
+.aq-preview { font-size: 26px; font-weight: 800; text-align: center; min-height: 36px; word-break: break-all; }
+
+.aq-me { display: flex; justify-content: flex-end; align-items: baseline; gap: 8px; margin-bottom: -6px; }
+.aq-me strong { font-size: 18px; color: var(--accent); }
+.aq-player { padding-bottom: 8px; }
+.aq-answerbar {
+  position: sticky;
+  bottom: 0;
+  padding: 10px 0 max(4px, env(safe-area-inset-bottom));
+  background: linear-gradient(transparent, var(--bg) 22%);
+}
+.aq-answerbar .input { font-size: 22px; font-weight: 800; }
+.aq-answerbar .input::placeholder { font-size: 15px; font-weight: 400; }
+.aq-answerbar .btn { min-width: 84px; }
+
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+.pop { animation: pop .45s ease-out; }

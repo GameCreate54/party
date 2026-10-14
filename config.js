@@ -1,7 +1,7 @@
 // ===== 設定ファイル =====
 // USE_FIREBASE を true にすると、下の Firebase につながって、スマホ同士で遊べます。
 // false のままだと「テストモード」になり、同じブラウザのタブ同士でだけ遊べます。
-const USE_FIREBASE = false;
+const USE_FIREBASE = true;
 
 // Firebase の設定（Firebase コンソール → プロジェクトの設定 → マイアプリ でコピーできるもの）
 const FIREBASE_SETTINGS = {

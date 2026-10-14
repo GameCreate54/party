@@ -142,6 +142,21 @@ function patch(container, view) {
   else container.replaceChildren(view);
 }
 
+// 確認ダイアログ（ブラウザ標準の confirm() はアプリ内ブラウザで出ないことがあるので自前で出す）
+// 使い方：ask('ロビーに戻りますか？', () => 実行すること)
+function ask(message, onYes, opts = {}) {
+  const old = document.getElementById('party-ask');
+  if (old) old.remove();
+  const close = () => box.remove();
+  const box = h('div', { id: 'party-ask', class: 'ask-overlay', onclick: (e) => { if (e.target === box) close(); } },
+    h('div', { class: 'ask-sheet', role: 'dialog', 'aria-modal': 'true' },
+      h('p', { class: 'ask-msg' }, message),
+      h('div', { class: 'ask-btns' },
+        h('button', { type: 'button', class: 'btn ghost', onclick: close }, opts.no || 'やめる'),
+        h('button', { type: 'button', class: 'btn primary', onclick: () => { close(); onYes(); } }, opts.yes || 'OK'))));
+  document.body.appendChild(box);
+}
+
 let toastTimer;
 function toast(msg) {
   const el = document.getElementById('toast');
@@ -153,5 +168,5 @@ function toast(msg) {
 }
 
 window.Party = window.Party || {};
-window.Party.ui = { drafts, h, inputBox, button, stepper, segmented, shuffle, pick, toast, patch };
+window.Party.ui = { drafts, h, inputBox, button, stepper, segmented, shuffle, pick, toast, patch, ask };
 })();

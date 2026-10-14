@@ -2,7 +2,7 @@
 (() => {
 const { createBackend, Room, GAMES } = window.Party;
 const { MAX_CONNECTIONS } = window.PARTY_CONFIG;
-const { h, inputBox, button, drafts, toast, patch } = window.Party.ui;
+const { h, inputBox, button, drafts, toast, patch, ask } = window.Party.ui;
 
 
 const app = document.getElementById('app');
@@ -177,7 +177,7 @@ function lobbyScreen() {
         !p.online && h('span', { class: 'tag off' }, '切断中'),
         ctx.isHost && p.id !== me && h('button', {
           class: 'kick', type: 'button', 'aria-label': p.name + 'を退出させる',
-          onclick: () => confirm(`${p.name} を部屋から外しますか？`) && guard(() => room.kick(p.id)),
+          onclick: () => ask(`${p.name} を部屋から外しますか？`, () => guard(() => room.kick(p.id))),
         }, '×'))))),
 
     h('section', { class: 'card' },
@@ -189,7 +189,7 @@ function lobbyScreen() {
         onclick: () => g.id !== mod.id && guard(() => room.selectGame(g.id)),
       },
         h('span', { class: 'game-icon' }, g.icon),
-        h('span', null, h('strong', null, g.name), h('small', null, g.description)))))),
+        h('span', null, h('strong', null, g.id === mod.id && g.title ? g.title(ctx) : g.name), h('small', null, g.description)))))),
 
     h('section', { class: 'card' },
       h('h2', null, '設定'),
@@ -201,7 +201,7 @@ function lobbyScreen() {
         button('ゲーム開始', () => guard(() => room.start()), 'primary', { disabled: !!err }))
       : h('p', { class: 'center muted' }, 'ホストがゲームを始めるのを待っています'),
 
-    button('部屋を出る', () => confirm('部屋を出ますか？') && leave(), 'ghost'));
+    button('部屋を出る', () => ask('部屋を出ますか？', () => leave()), 'ghost'));
 }
 
 function leave() {
@@ -223,11 +223,11 @@ function gameScreen() {
   return h('div', { class: 'screen' },
     hostBanner(ctx),
     h('div', { class: 'game-head' },
-      h('span', { class: 'game-title' }, mod.icon + ' ' + mod.name),
+      h('span', { class: 'game-title' }, mod.icon + ' ' + (mod.title ? mod.title(ctx) : mod.name)),
       h('span', { class: 'muted small' }, room.code),
       ctx.isHost && h('button', {
         class: 'link small', type: 'button',
-        onclick: () => confirm('ゲームを終了してロビーに戻りますか？') && guard(() => room.toLobby()),
+        onclick: () => ask('ゲームを終了してロビーに戻りますか？', () => guard(() => room.toLobby())),
       }, 'ロビーへ')),
     mod.render(ctx));
 }

@@ -261,3 +261,12 @@ h2 { font-size: 17px; margin-bottom: 10px; }
   opacity: 0; pointer-events: none; transition: .2s; max-width: calc(100% - 32px); text-align: center;
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- 確認ダイアログ ---------- */
+.ask-overlay {
+  position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center;
+  padding: 24px; background: rgba(8, 10, 24, .72); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+}
+.ask-sheet { width: 100%; max-width: 380px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.ask-msg { margin: 0; font-weight: 700; font-size: 16px; line-height: 1.6; white-space: pre-line; text-align: center; }
+.ask-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }

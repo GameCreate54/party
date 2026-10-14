@@ -6,7 +6,7 @@
 //
 // 時間切れの判定はホストの端末の時計で行う（tick）。
 (() => {
-const { h, inputBox, button, drafts, toast, stepper } = window.Party.ui;
+const { h, inputBox, button, drafts, toast, stepper, ask } = window.Party.ui;
 
 const MAX_PLAYERS = 8;
 const COLORS = ['#ff5d73', '#ffb020', '#3ddc97', '#4cc9f0', '#a78bfa', '#f472b6', '#facc15', '#fb923c'];
@@ -245,7 +245,7 @@ function playView(ctx, g) {
     const canKick = ctx.isHost && id !== ctx.me && !out;
     return h('div', {
       class: 'wm-pc' + (id === ctx.me ? ' me' : '') + (out ? ' out' : '') + (!out && targeted.has(id) ? ' tgt' : ''),
-      onclick: canKick ? () => confirm(`${nameOf(ctx, id)} を強制脱落させますか？\n（回線落ち・放置のときに使ってね）`) && ctx.send('kick', { id }) : null,
+      onclick: canKick ? () => ask(`${nameOf(ctx, id)} を強制脱落させますか？\n（回線落ち・放置のときに使ってね）`, () => ctx.send('kick', { id })) : null,
     },
       out && h('div', { class: 'wm-rs' }, (REASON[reason] || '❌').split(' ')[0]),
       avatar(g, ctx, id),

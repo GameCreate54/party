@@ -262,16 +262,13 @@ function talk(ctx, g) {
   const elapsed = typeof g.startedAt === 'number' ? (Date.now() - g.startedAt) / 1000 : 0;
   const t = g.topic;
   const scores = g.scores || {};
-  const caught = g.caught || {};
-  const ready = g.ready || {};
 
   const board = h('div', { class: 'uso-board' }, g.players.map((id) => {
     const sc = scores[id] || 0;
     return h('div', { class: 'uso-pcard' + (id === ctx.me ? ' me' : '') },
       avatar(ctx, g, id),
       h('div', { class: 'uso-meta' },
-        h('div', { class: 'uso-nm' }, nameOf(ctx, id)),
-        h('div', { class: 'muted', style: 'font-size:11px' }, `バレたウソ ${caught[id] || 0}/${(ready[id] && ready[id].n) || 0}`)),
+        h('div', { class: 'uso-nm' }, nameOf(ctx, id))),
       h('div', { class: 'uso-sc ' + (sc > 0 ? 'plus' : sc < 0 ? 'minus' : '') }, fmt(sc)));
   }));
 

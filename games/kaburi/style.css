@@ -1,0 +1,20 @@
+/* ===== かぶったらダメ ===== */
+.kb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.kb-grid.wide { grid-template-columns: repeat(5, 1fr); }
+.kb-num { aspect-ratio: 1; border-radius: 14px; border: 2px solid var(--line); background: var(--bg2); font-size: 26px; font-weight: 800; cursor: pointer; }
+.kb-num.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.kb-reveal { display: flex; flex-direction: column; gap: 8px; }
+.kb-res { display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--card); border: 2px solid var(--line); }
+.kb-res.ok { border-color: var(--citizen); }
+.kb-res.ng { border-color: var(--wolf); opacity: .85; }
+.kb-res.mine { box-shadow: 0 0 0 3px rgba(244, 183, 64, .35); }
+.kb-big { font-size: 38px; font-weight: 800; text-align: center; line-height: 1; }
+.kb-names { font-weight: 700; word-break: break-all; }
+.kb-tag { font-weight: 800; font-size: 14px; white-space: nowrap; }
+.kb-res.ok .kb-tag { color: var(--citizen); }
+.kb-res.ng .kb-tag { color: var(--wolf); }
+.kb-plus { font-size: 12px; color: var(--citizen); font-weight: 800; }
+.kb-hist { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; }
+.kb-hist th, .kb-hist td { padding: 4px; text-align: center; border-bottom: 1px solid var(--line); }
+.kb-hist .kb-hn { text-align: left; font-weight: 700; max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kb-hist td.dup { color: var(--wolf); text-decoration: line-through; }

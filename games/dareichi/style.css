@@ -1,0 +1,21 @@
+/* ===== この中でいちばん… ===== */
+.di-q { padding: 18px 14px; }
+.di-qt { font-size: clamp(20px, 6.5vw, 28px); font-weight: 800; line-height: 1.4; }
+.di-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.di-pick { min-height: 54px; border-radius: 14px; border: 2px solid var(--line); background: var(--bg2); font-weight: 800; font-size: 16px; cursor: pointer; word-break: break-all; }
+.di-pick.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.di-winner { padding: 16px; }
+.di-crown { font-size: 40px; line-height: 1.1; }
+.di-name { font-size: 28px; font-weight: 800; color: var(--accent); word-break: break-all; }
+.di-bars { display: flex; flex-direction: column; gap: 8px; }
+.di-bar { display: grid; grid-template-columns: 80px 1fr 44px; gap: 8px; align-items: center; font-size: 14px; }
+.di-bar.top .di-bn { color: var(--accent); }
+.di-bn { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.di-track { height: 16px; border-radius: 99px; background: var(--bg2); overflow: hidden; }
+.di-fill { display: block; height: 100%; background: var(--accent); }
+.di-bv { text-align: right; font-weight: 800; }
+.di-who { grid-column: 2 / 4; font-size: 12px; color: var(--muted); margin-top: -4px; }
+.di-titles { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.di-trow b { display: block; font-size: 14px; }
+.di-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.di-tag { font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 99px; background: rgba(244, 183, 64, .18); color: var(--accent); }

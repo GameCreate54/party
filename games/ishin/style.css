@@ -1,0 +1,17 @@
+/* ===== 以心伝心 ===== */
+.is-topic { padding: 18px 14px; }
+.is-q { font-size: clamp(22px, 7vw, 30px); font-weight: 800; line-height: 1.4; word-break: break-all; }
+.is-row { display: flex; gap: 8px; }
+.is-row .input { flex: 1; min-width: 0; font-size: 20px; font-weight: 700; }
+.is-groups { display: flex; flex-direction: column; gap: 8px; }
+.is-group { text-align: left; background: var(--card); border: 2px solid var(--line); border-radius: 14px; padding: 10px 12px; color: var(--text); }
+.is-group:disabled { opacity: 1; cursor: default; }
+.is-group:not(:disabled) { cursor: pointer; }
+.is-group.match { border-color: var(--citizen); }
+.is-group.mine { box-shadow: 0 0 0 3px rgba(244, 183, 64, .35); }
+.is-group.sel { border-color: var(--accent); border-style: dashed; }
+.is-ans { font-size: 22px; font-weight: 800; word-break: break-all; }
+.is-cnt { margin-left: 8px; font-size: 16px; color: var(--citizen); }
+.is-who { font-size: 13px; color: var(--muted); }
+.is-pt { font-size: 13px; font-weight: 800; color: var(--accent); }
+.is-plus { font-size: 12px; color: var(--citizen); font-weight: 800; }

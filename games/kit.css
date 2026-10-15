@@ -1,0 +1,13 @@
+/* ===== 共通部品（kit.js） ===== */
+.kit-scores { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+.kit-score { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 10px; background: var(--bg2); }
+.kit-score.me { outline: 1.5px solid #4a5294; }
+.kit-rank { width: 22px; height: 22px; border-radius: 50%; background: var(--card2); display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: none; }
+.kit-name { font-weight: 700; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kit-pt { font-weight: 800; color: var(--accent); white-space: nowrap; }
+.kit-final { padding: 22px 16px; }
+.kit-crown { font-size: 54px; line-height: 1.1; }
+.kit-winner { font-size: 26px; font-weight: 800; color: var(--accent); word-break: break-all; }
+.kit-done .chip { cursor: default; font-size: 13px; padding: 4px 11px; }
+@keyframes kitpop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+.pop { animation: kitpop .45s ease-out; }

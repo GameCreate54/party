@@ -1,0 +1,127 @@
+/* ===== 追加ゲーム（多数決・ハゲタカ・欲ばりダイス・フラッシュ暗算・仲間はずれ探し・じゃんけん・30を言ったら負け・平均の2/3・大喜利・ヒット＆ブロー） ===== */
+/* 多数決 */
+.tk-q { padding: 18px 14px; }
+.tk-qt { font-size: clamp(22px, 7vw, 30px); font-weight: 800; line-height: 1.35; }
+.tk-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tk-opt { min-height: 120px; border-radius: 18px; border: 3px solid var(--line); background: var(--bg2); font-size: 22px; font-weight: 800; cursor: pointer; padding: 10px; word-break: break-all; }
+.tk-opt.a.on { background: #2f6fde; border-color: #6aa0ff; color: #fff; }
+.tk-opt.b.on { background: #e5484d; border-color: #ff8a8e; color: #fff; }
+.tk-res { border-radius: 18px; padding: 14px 10px; text-align: center; background: var(--card); border: 3px solid var(--line); opacity: .7; }
+.tk-res.win { opacity: 1; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(244, 183, 64, .3); }
+.tk-res.a .tk-lab { color: #8fb5ff; }
+.tk-res.b .tk-lab { color: #ff9ea1; }
+.tk-lab { font-size: 18px; font-weight: 800; word-break: break-all; }
+.tk-n { font-size: 40px; font-weight: 800; line-height: 1.2; }
+.tk-who { font-size: 13px; color: var(--muted); }
+.tk-verdict { font-weight: 800; color: var(--accent); }
+/* ハゲタカ */
+.hg-card { display: inline-grid; place-items: center; width: 110px; height: 140px; margin: 6px auto; border-radius: 16px; background: #fbfaf5; color: #1b1b1b; font-size: 52px; font-weight: 800; box-shadow: 0 6px 0 rgba(0,0,0,.3); }
+.hg-card.neg { background: #2a1520; color: #ff8a8e; border: 3px solid #ff8a8e; }
+.hg-pot { color: var(--accent); font-weight: 800; }
+.hg-hand { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.hg-n { aspect-ratio: 1; border-radius: 12px; border: 2px solid var(--line); background: var(--bg2); font-size: 20px; font-weight: 800; cursor: pointer; }
+.hg-n.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.hg-n:disabled { opacity: .2; text-decoration: line-through; cursor: default; }
+.hg-taker { font-size: 20px; font-weight: 800; color: var(--citizen); }
+.hg-taker.none { color: var(--muted); }
+.hg-bids { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.hg-bid { display: flex; justify-content: space-between; padding: 8px 12px; border-radius: 12px; background: var(--card); border: 2px solid var(--line); }
+.hg-bid b { font-size: 20px; }
+.hg-bid.win { border-color: var(--citizen); }
+.hg-bid.dup b { color: var(--wolf); text-decoration: line-through; }
+/* 欲ばりダイス */
+.dc-stage { padding: 16px; }
+.dc-stage.mine { border-color: var(--accent); }
+.dc-die { font-size: 110px; line-height: 1.1; }
+.dc-die.bust { filter: drop-shadow(0 0 12px #ff4d4d); }
+.dc-bust { color: var(--wolf); font-weight: 800; }
+.dc-pot { font-size: 18px; }
+.dc-pot b { font-size: 34px; color: var(--accent); margin-left: 4px; }
+.dc-rolls { font-size: 26px; letter-spacing: 2px; min-height: 30px; word-break: break-all; }
+.dc-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dc-bar { width: 70px; height: 8px; border-radius: 99px; background: var(--card2); overflow: hidden; }
+.dc-bar span { display: block; height: 100%; background: var(--accent); }
+.kit-score.dc-turn .kit-name::before { content: '🎲 '; }
+/* フラッシュ暗算 */
+.az-screen { min-height: 200px; display: grid; place-items: center; }
+.az-num { font-size: 110px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.az-num.count { font-size: 60px; color: var(--muted); }
+.az-num.done { color: var(--accent); }
+.az-row, .hk-row, .og-row, .hb-row { display: flex; gap: 8px; }
+.az-row .input, .hk-row .input, .og-row .input, .hb-row .input { flex: 1; min-width: 0; font-size: 22px; font-weight: 800; }
+.az-sum { font-size: 48px; font-weight: 800; color: var(--accent); }
+.az-res { display: flex; flex-direction: column; gap: 6px; }
+.az-r { display: grid; grid-template-columns: 1fr auto 60px 34px; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: var(--card); border: 2px solid var(--line); }
+.az-r.ok { border-color: var(--citizen); }
+.az-r.ng b { color: var(--wolf); }
+.az-g { font-weight: 800; color: var(--citizen); text-align: right; }
+/* 仲間はずれ探し */
+.hz-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.hz-grid { display: grid; gap: 4px; padding: 6px; border-radius: 16px; background: var(--card); border: 2px solid var(--line); }
+.hz-grid.out { opacity: .4; }
+.hz-cell { aspect-ratio: 1; border: 0; border-radius: 8px; background: var(--bg2); font-size: inherit; line-height: 1; padding: 0; cursor: pointer; display: grid; place-items: center; }
+.hz-cell:disabled { cursor: default; opacity: 1; }
+.hz-cell.odd { background: var(--accent); box-shadow: 0 0 0 3px var(--accent); }
+.kit-score.hz-out { opacity: .5; }
+/* じゃんけん */
+.jk-call { padding: 16px; }
+.jk-big { font-size: 26px; font-weight: 800; }
+.jk-time { font-size: 32px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--accent); }
+.jk-hands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.jk-h { aspect-ratio: 1; border-radius: 20px; border: 3px solid var(--line); background: var(--bg2); font-size: 54px; cursor: pointer; }
+.jk-h.on { border-color: var(--accent); background: rgba(244, 183, 64, .2); transform: scale(1.05); }
+.jk-lose { color: var(--wolf); font-weight: 800; margin-top: 4px; }
+.jk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.jk-p { text-align: center; padding: 8px 4px; border-radius: 12px; background: var(--card); border: 2px solid var(--line); }
+.jk-p.lose { opacity: .45; border-color: var(--wolf); }
+.jk-e { font-size: 34px; line-height: 1.2; }
+.jk-n { font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* 30を言ったら負け */
+.c3-stage { padding: 16px; }
+.c3-stage.lost { border-color: var(--wolf); }
+.c3-n { font-size: 80px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.c3-lose { color: var(--wolf); font-weight: 800; font-size: 20px; }
+.c3-time { color: var(--accent); font-weight: 800; }
+.c3-btns { display: grid; gap: 8px; }
+.c3-log { display: flex; flex-direction: column; gap: 3px; font-size: 14px; max-height: 180px; overflow: auto; }
+/* 平均の2/3 */
+.hk-rule { font-size: 22px; font-weight: 800; color: var(--accent); }
+.hk-target { font-size: 44px; font-weight: 800; color: var(--accent); }
+.hk-line { position: relative; height: 44px; margin: 6px 14px; border-bottom: 3px solid var(--line); }
+.hk-mark { position: absolute; bottom: 4px; transform: translateX(-50%); font-size: 24px; }
+.hk-dot { position: absolute; bottom: -8px; width: 13px; height: 13px; border-radius: 50%; background: var(--muted); transform: translateX(-50%); }
+.hk-dot.win { background: var(--citizen); box-shadow: 0 0 0 3px rgba(95, 191, 149, .4); }
+.hk-list { display: flex; flex-direction: column; gap: 6px; }
+.hk-r { display: grid; grid-template-columns: 1fr auto 70px; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: var(--card); border: 2px solid var(--line); }
+.hk-r b { font-size: 22px; }
+.hk-r.win { border-color: var(--citizen); }
+.hk-hist { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; font-size: 13px; }
+.hk-hist span { padding: 2px 10px; border-radius: 99px; background: var(--card2); }
+/* 大喜利 */
+.og-q { padding: 18px 14px; }
+.og-qt { font-size: clamp(19px, 6vw, 26px); font-weight: 800; line-height: 1.45; }
+.og-list { display: flex; flex-direction: column; gap: 8px; }
+.og-a { text-align: left; padding: 14px; border-radius: 14px; background: var(--card); border: 2px solid var(--line); font-size: 18px; font-weight: 700; color: var(--text); cursor: pointer; word-break: break-all; }
+.og-a.on { border-color: var(--accent); background: rgba(244, 183, 64, .12); }
+.og-a:disabled { opacity: .5; cursor: default; }
+.og-a.res { cursor: default; }
+.og-a.top { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(244, 183, 64, .3); }
+.og-by { display: flex; justify-content: space-between; gap: 8px; margin-top: 6px; font-size: 13px; color: var(--muted); }
+.og-by b { color: var(--accent); }
+.og-best { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+.og-t { font-weight: 800; font-size: 17px; }
+/* ヒット＆ブロー */
+.hb-top { display: flex; justify-content: space-between; align-items: center; }
+.hb-time { font-weight: 800; font-variant-numeric: tabular-nums; }
+.hb-ans { font-size: 54px; font-weight: 800; letter-spacing: .2em; color: var(--accent); }
+.hb-ans.hidden { color: var(--muted); }
+.hb-done { font-weight: 800; color: var(--citizen); }
+.hb-log { display: flex; flex-direction: column; gap: 4px; max-height: 260px; overflow: auto; }
+.hb-l { display: grid; grid-template-columns: 30px 1fr auto auto; gap: 10px; align-items: center; padding: 4px 6px; border-radius: 8px; }
+.hb-l b { font-size: 22px; letter-spacing: .15em; font-variant-numeric: tabular-nums; }
+.hb-l.ok { background: rgba(95, 191, 149, .2); }
+.hb-h { color: var(--accent); font-weight: 800; }
+.hb-b { color: #8fb5ff; font-weight: 800; }
+.hb-status { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+.hb-st { display: flex; justify-content: space-between; padding: 6px 10px; border-radius: 10px; background: var(--bg2); font-size: 14px; }
+.hb-st.ok { color: var(--citizen); font-weight: 800; }

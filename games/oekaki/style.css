@@ -1,0 +1,26 @@
+/* ===== お絵かきクイズ ===== */
+.oe { gap: 10px; }
+.oe-top { display: flex; justify-content: space-between; align-items: center; }
+.oe-timer { font-weight: 800; font-variant-numeric: tabular-nums; }
+.oe-timer.hurry { color: var(--wolf); }
+.oe-head { display: flex; align-items: baseline; justify-content: center; gap: 10px; flex-wrap: wrap; padding: 6px 10px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); }
+.oe-head strong { font-size: 24px; font-weight: 800; }
+.oe-head.mine { border-color: var(--accent); }
+.oe-head.mine strong { color: var(--accent); }
+.oe-head.reveal strong { color: var(--citizen); font-size: 28px; }
+.oe-head .ok { color: var(--citizen); }
+.oe-board { border-radius: 14px; overflow: hidden; border: 2px solid var(--line); background: #fbfaf5; }
+#oe-canvas { display: block; width: 100%; aspect-ratio: 1; touch-action: none; }
+#oe-canvas.drawing { cursor: crosshair; }
+.oe-tools { display: flex; flex-direction: column; gap: 8px; }
+.oe-colors { display: flex; gap: 6px; justify-content: space-between; }
+.oe-color { flex: 1; height: 34px; border-radius: 10px; border: 2px solid var(--line); cursor: pointer; }
+.oe-color.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.oe-tools-row { display: flex; gap: 6px; align-items: center; }
+.oe-tools-row .seg { flex: 1; grid-template-columns: repeat(3, 1fr); }
+.oe-row { display: flex; gap: 8px; }
+.oe-row .input { flex: 1; min-width: 0; font-size: 18px; font-weight: 700; }
+.oe-chat { display: flex; flex-direction: column; gap: 3px; font-size: 14px; }
+.oe-msg { padding: 3px 10px; border-radius: 8px; background: var(--bg2); word-break: break-all; }
+.oe-msg.ok { background: rgba(95, 191, 149, .2); color: var(--citizen); font-weight: 700; }
+.kit-score.oe-drawer .kit-name::before { content: '🎨 '; }

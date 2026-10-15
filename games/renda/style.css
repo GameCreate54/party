@@ -1,0 +1,30 @@
+/* ===== 連打バトル ===== */
+.rd-head { padding: 14px; }
+.rd-mode { font-size: 22px; font-weight: 800; color: var(--accent); }
+.rd-clock { font-size: 34px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.rd-count { font-size: 56px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.rd-btn {
+  width: 100%; min-height: 170px; border: 0; border-radius: 28px; cursor: pointer;
+  background: radial-gradient(circle at 50% 35%, #ffd36b, #f08c1a); color: #3a2000;
+  font-size: 44px; font-weight: 800; box-shadow: 0 8px 0 #9a5a10;
+  touch-action: manipulation; user-select: none; -webkit-user-select: none;
+}
+.rd-btn:active { transform: translateY(5px); box-shadow: 0 3px 0 #9a5a10; }
+.rd-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rd-field { position: relative; height: 230px; border-radius: 20px; background: var(--bg2); border: 2px dashed var(--line); overflow: hidden; }
+.rd-btn.small { position: absolute; top: 50%; width: 90px; min-height: 90px; height: 90px; border-radius: 50%; font-size: 30px; transform: translate(-50%, -50%); transition: left .08s; }
+.rd-btn.small:active { transform: translate(-50%, -45%); }
+.rd-bars { display: flex; flex-direction: column; gap: 6px; }
+.rd-bar { display: grid; grid-template-columns: 70px 1fr 40px; gap: 8px; align-items: center; font-size: 14px; }
+.rd-bar.me .rd-bn { color: var(--accent); }
+.rd-bn { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rd-track { height: 14px; border-radius: 99px; background: var(--bg2); overflow: hidden; }
+.rd-fill { display: block; height: 100%; background: linear-gradient(90deg, #f4b740, #f08c1a); transition: width .2s; }
+.rd-bv { text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+.rd-res { display: flex; flex-direction: column; gap: 6px; }
+.rd-row { display: grid; grid-template-columns: 1fr auto 70px 36px; gap: 8px; align-items: center; padding: 10px 12px; border-radius: 14px; background: var(--card); border: 2px solid var(--line); }
+.rd-row.best { border-color: var(--accent); }
+.rd-row.me { box-shadow: 0 0 0 3px rgba(95, 191, 149, .3); }
+.rd-n { font-size: 20px; font-weight: 800; }
+.rd-note { font-size: 12px; color: var(--muted); text-align: right; }
+.rd-gain { font-weight: 800; color: var(--citizen); text-align: right; }

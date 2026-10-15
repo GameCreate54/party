@@ -1,0 +1,23 @@
+/* ===== ぴったりストップ ===== */
+.pt-stage { padding: 18px 14px; }
+.pt-target { font-size: 30px; font-weight: 800; color: var(--accent); }
+.pt-clock { font-size: 64px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.2; min-height: 78px; }
+.pt-clock.count { color: var(--muted); }
+.pt-clock.hidden { color: var(--draw); letter-spacing: .05em; }
+.pt-mine { font-weight: 800; color: var(--citizen); }
+.pt-btn {
+  width: 100%; min-height: 150px; border-radius: 28px; border: 0; cursor: pointer;
+  background: radial-gradient(circle at 50% 35%, #ff7a6b, #c83a3a); color: #fff;
+  font-size: 46px; font-weight: 800; letter-spacing: .1em; box-shadow: 0 8px 0 #7d1f24;
+  touch-action: manipulation; user-select: none; -webkit-user-select: none;
+}
+.pt-btn:active { transform: translateY(5px); box-shadow: 0 3px 0 #7d1f24; }
+.pt-res { display: flex; flex-direction: column; gap: 6px; }
+.pt-row { display: grid; grid-template-columns: 1fr auto 86px 40px; align-items: center; gap: 8px; padding: 10px 12px; background: var(--card); border: 2px solid var(--line); border-radius: 14px; }
+.pt-row.best { border-color: var(--accent); }
+.pt-row.mine { box-shadow: 0 0 0 3px rgba(95, 191, 149, .3); }
+.pt-name { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pt-time { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.pt-diff { font-size: 13px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.pt-diff.just { color: var(--accent); font-weight: 800; }
+.pt-gain { font-weight: 800; color: var(--citizen); text-align: right; }

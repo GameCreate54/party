@@ -1,0 +1,21 @@
+/* ===== うんち爆弾 ===== */
+.un-stage { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px 14px; }
+.un-holder { font-size: 26px; font-weight: 800; color: var(--accent); word-break: break-all; }
+.un-count { font-size: 64px; font-weight: 800; line-height: 1.1; }
+.un-alert { font-size: 20px; font-weight: 800; color: var(--wolf); }
+.un-poop { font-size: 110px; line-height: 1.1; background: none; border: 0; padding: 0; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
+.un-poop.small { font-size: 72px; cursor: default; }
+.un-poop:active { transform: scale(.92); }
+.un-poop.clean { font-size: 80px; }
+.un-poop.heat1 { animation: unshake .5s infinite; }
+.un-poop.heat2 { animation: unshake .18s infinite; filter: drop-shadow(0 0 14px #ff6b3d); }
+@keyframes unshake { 0%, 100% { transform: translate(0, 0) rotate(0); } 25% { transform: translate(-3px, 1px) rotate(-4deg); } 75% { transform: translate(3px, -1px) rotate(4deg); } }
+.un-wipe { font-weight: 800; }
+.un-targets { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+.un-target { min-height: 52px; }
+.un-boom { padding: 22px 14px; border-color: var(--wolf); }
+.un-splash { font-size: 64px; line-height: 1.2; }
+.un-loser { font-size: 22px; font-weight: 800; color: var(--wolf); }
+.kit-score.un-has { outline: 2px solid #b5793a; }
+.kit-score.un-has .kit-name::before { content: '💩 '; }
+.un-hist { margin: 6px 0 0; padding-left: 22px; font-size: 14px; }

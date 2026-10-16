@@ -33,6 +33,8 @@ async function createFirebase(cfg) {
     remove: (p) => db.remove(r(p)),
     push: async (p, v) => (await db.push(r(p), plain(v))).key,
     subscribe: (p, cb) => db.onValue(r(p), (s) => cb(s.val())),
+    // 子要素が増えたときだけ1つずつ受け取る（落書きの線など、たくさん増えていくデータ用）
+    feed: (p, limit, cb) => db.onChildAdded(db.query(r(p), db.limitToLast(limit)), (s) => cb(s.key, s.val())),
     presence(p) {
       const target = r(p);
       const off = db.onValue(r('.info/connected'), (s) => {
@@ -147,6 +149,15 @@ function createLocal() {
       const key = Date.now().toString(36).padStart(10, '0') + (seq++).toString(36).padStart(4, '0') + Math.random().toString(36).slice(2, 6);
       await write(() => setAt([...parts(p), key], v));
       return key;
+    },
+    feed(p, limit, cb) {
+      let seen = new Set();
+      return this.subscribe(p, (v) => {
+        const keys = Object.keys(v || {}).sort().slice(-limit);
+        const now = new Set(Object.keys(v || {}));
+        keys.forEach((k) => { if (!seen.has(k)) cb(k, v[k]); });
+        seen = now;
+      });
     },
     subscribe(p, cb) {
       const s = { ps: parts(p), cb, last: undefined };

@@ -57,7 +57,7 @@ simul({
   },
   reveal: (ctx, g) => h('div', { class: 'stack' },
     h('div', { class: 'card center pop' }, h('div', { class: 'muted small' }, 'イエスは'), h('div', { class: 'mx-big' }, `${g.yes}人`), h('div', { class: 'muted small' }, `（回答 ${g.total}人中・だれがイエスかはヒミツ）`)),
-    h('div', { class: 'mx-list' }, idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : '') }, h('span', null, nameOf(ctx, id)), h('b', null, (g.picks[id] ? g.picks[id].p : '－') + '人と予想'))))),
+    h('div', { class: 'mx-list' }, idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : '') }, h('span', null, nameOf(ctx, id)), h('b', null, ((g.picks || {})[id] ? (g.picks || {})[id].p : '－') + '人と予想'))))),
 });
 
 // ---------- 数えてみて ----------
@@ -88,7 +88,7 @@ simul({
   },
   reveal: (ctx, g) => h('div', { class: 'stack' },
     h('div', { class: 'card center pop' }, h('div', { class: 'muted small' }, '正解は'), h('div', { class: 'mx-big' }, `${g.n}個`)),
-    h('div', { class: 'mx-list' }, idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : '') }, h('span', null, nameOf(ctx, id)), h('b', null, g.picks[id] != null ? `${g.picks[id]}個` : '－'))))),
+    h('div', { class: 'mx-list' }, idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : '') }, h('span', null, nameOf(ctx, id)), h('b', null, (g.picks || {})[id] != null ? `${(g.picks || {})[id]}個` : '－'))))),
 });
 
 // ---------- ひとりだけ ----------
@@ -112,7 +112,7 @@ simul({
     idsOf(g).forEach((id) => { gain[id] = picks[id] && cnt[norm(picks[id])] === 1 ? 1 : 0; });
     return { gain };
   },
-  reveal: (ctx, g) => h('div', { class: 'mx-list' }, idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : ' ng') }, h('span', null, nameOf(ctx, id)), h('b', null, g.picks[id] || '－'), h('span', { class: 'muted small' }, (g.gain || {})[id] ? 'ひとりだけ！' : g.picks[id] ? 'かぶり' : '')))),
+  reveal: (ctx, g) => h('div', { class: 'mx-list' }, idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : ' ng') }, h('span', null, nameOf(ctx, id)), h('b', null, (g.picks || {})[id] || '－'), h('span', { class: 'muted small' }, (g.gain || {})[id] ? 'ひとりだけ！' : (g.picks || {})[id] ? 'かぶり' : '')))),
 });
 
 // ---------- ハイ＆ロー ----------
@@ -145,7 +145,7 @@ simul({
   },
   reveal: (ctx, g) => h('div', { class: 'mx-list' },
     h('div', { class: 'center mx-verdict' }, g.res === 'e' ? '同じ数字！全員はずれ' : g.res === 'h' ? '大きい が正解' : '小さい が正解'),
-    idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : '') }, h('span', null, nameOf(ctx, id)), h('b', null, g.picks[id] === 'h' ? '⬆' : g.picks[id] === 'l' ? '⬇' : '－')))),
+    idsOf(g).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : '') }, h('span', null, nameOf(ctx, id)), h('b', null, (g.picks || {})[id] === 'h' ? '⬆' : (g.picks || {})[id] === 'l' ? '⬇' : '－')))),
 });
 
 // ---------- 価値観ランキング ----------
@@ -189,12 +189,12 @@ simul({
     return { gain };
   },
   reveal(ctx, g) {
-    const ans = g.picks[g.star];
+    const ans = (g.picks || {})[g.star];
     return h('div', { class: 'stack' },
       h('div', { class: 'card' }, h('strong', { style: 'font-size:14px' }, `${nameOf(ctx, g.star)} の答え`),
         ans ? h('ol', { class: 'rk-ans' }, ans.map((i) => h('li', null, g.items[i]))) : h('p', { class: 'muted' }, '主役が答えませんでした')),
       h('div', { class: 'mx-list' }, idsOf(g).filter((id) => id !== g.star).map((id) => h('div', { class: 'mx-r' + ((g.gain || {})[id] ? ' win' : '') },
-        h('span', null, nameOf(ctx, id)), h('b', { class: 'small' }, g.picks[id] ? g.picks[id].map((i) => g.items[i]).join(' > ') : '－'), h('span', { class: 'muted small' }, `${(g.gain || {})[id] || 0}こ一致`)))));
+        h('span', null, nameOf(ctx, id)), h('b', { class: 'small' }, (g.picks || {})[id] ? (g.picks || {})[id].map((i) => g.items[i]).join(' > ') : '－'), h('span', { class: 'muted small' }, `${(g.gain || {})[id] || 0}こ一致`)))));
   },
 });
 })();

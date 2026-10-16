@@ -14,7 +14,7 @@ const roomPath = (code) => `${ROOT}/rooms/${code}`;
 const validPlayers = (obj) => Object.entries(obj || {}).filter(([, p]) => p && p.name);
 
 class Room {
-  static async create(db, me, name) {
+  static async create(db, me, name, voteFor) {
     let code = null;
     for (let i = 0; i < 60 && !code; i++) {
       const c = genCode();
@@ -25,9 +25,10 @@ class Room {
     const game = GAMES[0];
     const now = Date.now();
     await db.set(roomPath(code), {
-      meta: { hostId: me, gameId: game.id, status: 'lobby', createdAt: now },
+      meta: { hostId: me, gameId: game.id, status: 'lobby', lobby: 'vote', createdAt: now },
       players: { [me]: { name, joinedAt: now, online: true } },
       settings: game.defaultSettings(),
+      votes: voteFor ? { [me]: voteFor } : null,
     });
     return code;
   }
@@ -74,6 +75,7 @@ class Room {
     w('memory', '/memory');
     w('live', '/live');
     w('secret', '/secret/' + this.me);
+    w('votes', '/votes');
   }
 
   unwatch() {
@@ -222,6 +224,35 @@ class Room {
 
   selectGame(id) {
     return this.db.update(this.base, { 'meta/gameId': id, settings: getGame(id).defaultSettings() });
+  }
+
+  // ---------- 多数決でゲームを決める ----------
+  // 有効な票（部屋にいる人・存在するゲーム）だけを数える
+  votes() {
+    const ids = new Set(this.players().map((p) => p.id));
+    return Object.fromEntries(Object.entries(this.state.votes || {}).filter(([pid, gid]) => ids.has(pid) && GAMES.some((g) => g.id === gid)));
+  }
+  vote(gameId) {
+    const mine = (this.state.votes || {})[this.me];
+    return this.db.set(this.base + '/votes/' + this.me, mine === gameId ? null : gameId);
+  }
+  // 一番票が多いゲームに決定。同数ならその中からランダム
+  async decide() {
+    const votes = this.votes();
+    const count = {};
+    Object.values(votes).forEach((g) => { count[g] = (count[g] || 0) + 1; });
+    const max = Math.max(0, ...Object.values(count));
+    if (!max) throw new Error('まだだれも投票していません');
+    const tops = Object.keys(count).filter((g) => count[g] === max);
+    const gameId = tops[Math.floor(Math.random() * tops.length)];
+    await this.db.update(this.base, {
+      'meta/gameId': gameId, 'meta/lobby': 'set',
+      'meta/pick': { gameId, tie: tops.length > 1 ? tops : null, n: max },
+      settings: getGame(gameId).defaultSettings(),
+    });
+  }
+  revote() {
+    return this.db.update(this.base, { votes: null, 'meta/lobby': 'vote', 'meta/pick': null });
   }
 
   updateSettings(patch) { return this.db.update(this.base + '/settings', patch); }
